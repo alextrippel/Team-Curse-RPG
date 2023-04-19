@@ -65,7 +65,7 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 script = ExtResource( 5 )
 
 [node name="Door_3_to_2" type="Area2D" parent="."]
-position = Vector2( 913, 145 )
+position = Vector2( 106, 520 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Door_3_to_2"]
@@ -75,6 +75,23 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door_3_to_2"]
+position = Vector2( 0.5, 0.5 )
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Door_3_to_4" type="Area2D" parent="."]
+position = Vector2( 924, 518 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Door_3_to_4"]
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door_3_to_4"]
 position = Vector2( 0.5, 0.5 )
 shape = SubResource( 3 )
 __meta__ = {
@@ -92,7 +109,7 @@ script = ExtResource( 7 )
 [node name="Background" type="ColorRect" parent="Combat"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.0705882, 0.0196078, 0.290196, 0.901961 )
+color = Color( 0.0392157, 0.0392157, 0.392157, 1 )
 
 [node name="Player_Action_Area" type="ColorRect" parent="Combat"]
 anchor_right = 1.0
@@ -230,6 +247,7 @@ limit_top = 0
 script = ExtResource( 6 )
 
 [connection signal="body_entered" from="Door_3_to_2" to="Door_3_to_2" method="_on_Door_body_entered"]
+[connection signal="body_entered" from="Door_3_to_4" to="Door_3_to_4" method="_on_Door_body_entered"]
 [connection signal="pressed" from="Combat/Player_Action_Area/Fight1" to="Combat" method="_on_Fight1_pressed"]
 [connection signal="pressed" from="Combat/Player_Action_Area/Defend1" to="Combat" method="_on_Defend1_pressed"]
 [connection signal="pressed" from="Combat/Player_Action_Area/Item1" to="Combat" method="_on_Item1_pressed"]
