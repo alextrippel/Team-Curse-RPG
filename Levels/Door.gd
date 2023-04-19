@@ -14,6 +14,9 @@ func _on_Door_body_entered(body):
 		if name == "Door_3_to_2":
 			Global.room = 2
 			Global.spawn_position = Vector2(700,150)
+		if name == "Door_3_to_4":
+			Global.room = 4
+			Global.spawn_position = Vector2(100,150)
 		if Global.room < Global.rooms.size():
 			var _scene = get_tree().change_scene(Global.rooms[Global.room])
 		else:

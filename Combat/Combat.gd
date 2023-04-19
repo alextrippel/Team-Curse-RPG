@@ -68,6 +68,7 @@ func _on_Defend1_pressed():
 
 func _on_Item1_pressed():
 	if 'potion' in Global.potions:
+		Global.stats['health'] = Global.stats['max_health']
 		Global.potions.remove('potion')
 
 func _on_Info1_pressed():
