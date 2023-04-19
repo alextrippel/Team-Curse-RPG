@@ -8,21 +8,23 @@ var level = 20
 var room = 1
 var saferoom = 1
 var rooms = [0,'res://Levels/Room1.tscn',
-'res://Levels/Room2.tscn','res://Levels/Room3.tscn'
+'res://Levels/Room2.tscn','res://Levels/Room3.tscn','res://Levels/Room4.tscn'
 ,'res://UI/Game_Over.tscn']
 var potions = ['potion','potion','potion','potion','potion']
 
-var combats_completed = {0:false,1:false,2:false,3:false}
+var combats_completed = {0:false,1:false,2:false,3:false,4:false}
 
 var room_enemy_type = {0:'',
 	1:'',
 	2:'Guard',
-	3:'Spider'
+	3:'Spider',
+	4: 'DM'
 }
 var room_enemy_pos = {0:Vector2.ZERO,
 	1:Vector2.ZERO,
 	2:Vector2(550,450),
-	3:Vector2(600, 300)
+	3:Vector2(600, 200),
+	4:Vector2(800, 300)
 }
 var spawned = false
 var enemy_combat_pos = [Vector2(600,150)]
