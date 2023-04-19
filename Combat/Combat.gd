@@ -27,7 +27,12 @@ func _physics_process(_delta):
 			var enemies = C_Enemy_Container.get_children()
 			for child in enemies :
 				child.take_action()
-				player_turn = true
+				if child.skip == true:
+					player_turn = false
+					print('you were restrained and your enemy moves again!')
+				else :
+					player_turn = true
+					child.skip = false
 			#enemy turn events
 		#ending the combat when either side dies
 		if win == true :
@@ -40,6 +45,7 @@ func end_combat():
 	Global.stats['defense'] = Global.stats['base_defense']
 	Global.stats['attack'] = Global.stats['base_attack']
 	if win == true :
+		Global.stats['health'] = Global.stats['max_health']
 		Global.combats_completed[Global.room]=true
 		Global.decrease_level()
 		hide()
@@ -65,13 +71,21 @@ func _on_Item1_pressed():
 		Global.potions.remove('potion')
 
 func _on_Info1_pressed():
-	if not $Player_Action_Area/Info_Wall.visible:
-		print('trying to show')
-		$Player_Action_Area/Info_Wall.show()
-		$Player_Action_Area/Info_Wall/Information.text = "HP: " + str(Global.stats['health']) + "\n\nAttack: "+ str(Global.stats['attack']) + "\n\nDefense: " + str(Global.stats['defense']) + "\n\nLevel: "+ str(Global.level) + "\n\nHealth Potions: "+ str(len(Global.potions))
-	else :
-		print('trying to hide')
-		$Player_Action_Area/Info_Wall.hide()
+	var enemies = C_Enemy_Container.get_children()
+	for child in enemies :
+		var ehealth = child.health
+		var emaxhealth = child.max_health
+		#created indent
+		if not $Player_Action_Area/Info_Wall.visible:
+			print('trying to show')
+			$Player_Action_Area/Info_Wall.show()
+			$Player_Action_Area/Info_Wall/Information.rect_position.y -= 40
+			$Player_Action_Area/Info_Wall/Information.text = "HP: " + str(Global.stats['health']) + "\n\nAttack: "+ str(Global.stats['attack']) + "\n\nDefense: " + str(Global.stats['defense']) + "\n\nLevel: "+ str(Global.level) + "\n\nHealth Potions: "+ str(len(Global.potions))
+			$Player_Action_Area/Info_Wall/Information.text += "\n\n Enemy HP: "+ str(ehealth)+ '/' + str(emaxhealth)
+		else :
+			print('trying to hide')
+			$Player_Action_Area/Info_Wall/Information.rect_position.y += 40
+			$Player_Action_Area/Info_Wall.hide()
 		
 func _on_Attack_A_pressed():
 	var enemies = C_Enemy_Container.get_children()
@@ -85,6 +99,7 @@ func _on_Attack_A_pressed():
 				c.queue_free()
 			
 	$Player_Action_Area.hide()
+	$Player_Fight_Area.hide()
 	player_turn = false
 
 func _on_Attack_B_pressed():

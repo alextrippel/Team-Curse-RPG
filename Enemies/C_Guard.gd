@@ -1,14 +1,16 @@
 extends Sprite
 
-var health = 10
-var attack = 20
-var defense = 2
+var health = 14
+var max_health = 14
+var attack = 15
+var defense = 6
+var skip = false
 
 var number = 0
 var turn = false
 onready var Combat = get_node('/root/Game/Combat')
 var actions = ['attack', 'defend']
-var pick = false
+
 func _ready():
 	randomize()
 	position = Vector2(800,100)
@@ -25,7 +27,12 @@ func take_action():
 	if action == 'attack':
 		Global.stats['health'] -= attack/Global.stats['defense']
 	elif action == 'defend':
-		defense *= 2
+		if defense < Global.stats['attack'] :
+			defense *= 1.4
+		else:
+			Global.stats['health'] -= attack/Global.stats['defense']
+			action = 'attack'
+			
 	print('enemy chose to ' + action)
 
 func damage(d):
