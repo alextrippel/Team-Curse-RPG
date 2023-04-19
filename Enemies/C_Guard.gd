@@ -2,7 +2,7 @@ extends Sprite
 
 var health = 14
 var max_health = 14
-var attack = 15
+var attack = 45
 var defense = 6
 var skip = false
 
