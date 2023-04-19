@@ -1,0 +1,81 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/Fonts/Black Blood.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/Start_Menu.gd" type="Script" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+light_mode = 2
+
+[sub_resource type="DynamicFont" id=2]
+size = 120
+extra_spacing_char = 4
+font_data = ExtResource( 1 )
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.178744, 0.396135, 0.661836, 0.869565, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.261861, 0, 0, 1, 0.4375, 0, 0, 1, 0.78125, 0, 0, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+
+[sub_resource type="StyleBoxFlat" id=10]
+
+[sub_resource type="StyleBoxFlat" id=11]
+
+[sub_resource type="StyleBoxFlat" id=12]
+
+[sub_resource type="StyleBoxFlat" id=13]
+
+[node name="Start_Menu" type="Control"]
+script = ExtResource( 2 )
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Label" type="Label" parent="."]
+material = SubResource( 1 )
+margin_left = 176.0
+margin_top = 100.0
+margin_right = 848.0
+margin_bottom = 431.0
+custom_fonts/font = SubResource( 2 )
+text = "Blight of Blood
+"
+align = 1
+valign = 1
+
+[node name="Light2D" type="Light2D" parent="Label"]
+position = Vector2( 328, 93.595 )
+rotation = -1.5708
+scale = Vector2( 0.069917, 736.036 )
+texture = SubResource( 4 )
+
+[node name="Play" type="Button" parent="."]
+margin_left = 424.5
+margin_top = 300.0
+margin_right = 599.5
+margin_bottom = 350.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+text = "Play"
+
+[node name="Button" type="Button" parent="."]
+margin_left = 424.5
+margin_top = 420.0
+margin_right = 599.5
+margin_bottom = 470.0
+custom_styles/hover = SubResource( 11 )
+custom_styles/pressed = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+text = "Quit"
+
+[connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
