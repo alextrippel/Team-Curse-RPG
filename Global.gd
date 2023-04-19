@@ -29,7 +29,7 @@ var room_enemy_pos = {0:Vector2.ZERO,
 var spawned = false
 var enemy_combat_pos = [Vector2(600,150)]
 
-var stats = {"max_health":20, 'health':5,
+var stats = {"max_health":20, 'health':20,
 	"base_defense":12,'defense':12,
 	'base_attack':20, 'attack':20,
 }
