@@ -152,10 +152,9 @@ margin_bottom = 290.0
 color = Color( 0.196078, 0.196078, 0.196078, 1 )
 
 [node name="Information" type="Label" parent="Combat/Player_Action_Area/Info_Wall"]
-margin_left = 18.0
-margin_top = 50.0
-margin_right = 178.0
-margin_bottom = 150.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -164.0
 align = 1
 valign = 1
 

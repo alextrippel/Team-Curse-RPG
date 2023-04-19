@@ -28,7 +28,7 @@ var spawned = false
 var enemy_combat_pos = [Vector2(600,150),Vector2(800,150)]
 
 var stats = {"max_health":10, 'health':10,
-	"base_defense":10,'defense':5,
+	"base_defense":5,'defense':5,
 	'base_attack':10, 'attack':10,
 }
 

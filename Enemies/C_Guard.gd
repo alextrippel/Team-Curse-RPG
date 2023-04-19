@@ -1,6 +1,7 @@
 extends Sprite
 
 var health = 10
+var max_health = 10
 var attack = 20
 var defense = 2
 
@@ -8,7 +9,7 @@ var number = 0
 var turn = false
 onready var Combat = get_node('/root/Game/Combat')
 var actions = ['attack', 'defend']
-var pick = false
+
 func _ready():
 	randomize()
 	position = Vector2(800,100)
