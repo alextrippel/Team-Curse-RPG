@@ -5,6 +5,8 @@ var velocity = Vector2.ZERO
 var direction = Vector2.ZERO
 var killed = false
 
+onready var Combat = get_node('/root/Game/Combat')
+
 func _ready():
 	direction = Vector2.LEFT
 
@@ -29,4 +31,6 @@ func die():
 
 func _on_Combat_Start_body_entered(body):
 	if body.name == 'Player':
-		print('combat')
+		#Global.combats_completed[Global.room]=true
+		#queue_free()
+		Combat.show()
