@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Levels/Door.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Combat/Combat.gd" type="Script" id=7]
 [ext_resource path="res://Player/C_Player.gd" type="Script" id=8]
 [ext_resource path="res://Enemies/C_Guard.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Guard.jpg" type="Texture" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -63,17 +64,17 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource( 5 )
 
-[node name="Door_1_to_2" type="Area2D" parent="."]
-position = Vector2( 800, 200 )
+[node name="Door_3_to_2" type="Area2D" parent="."]
+position = Vector2( 913, 145 )
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="Door_1_to_2"]
+[node name="Sprite" type="Sprite" parent="Door_3_to_2"]
 texture = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door_1_to_2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door_3_to_2"]
 position = Vector2( 0.5, 0.5 )
 shape = SubResource( 3 )
 __meta__ = {
@@ -213,11 +214,14 @@ text = "Back"
 [node name="C_Player_Container" type="Node2D" parent="Combat"]
 
 [node name="C_Player" type="Sprite" parent="Combat/C_Player_Container"]
+texture = ExtResource( 4 )
 script = ExtResource( 8 )
 
 [node name="C_Enemy_Container" type="Node2D" parent="Combat"]
 
 [node name="C_Guard" type="Sprite" parent="Combat/C_Enemy_Container"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 10 )
 script = ExtResource( 9 )
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -226,7 +230,7 @@ limit_left = 0
 limit_top = 0
 script = ExtResource( 6 )
 
-[connection signal="body_entered" from="Door_1_to_2" to="Door_1_to_2" method="_on_Door_body_entered"]
+[connection signal="body_entered" from="Door_3_to_2" to="Door_3_to_2" method="_on_Door_body_entered"]
 [connection signal="pressed" from="Combat/Player_Action_Area/Fight1" to="Combat" method="_on_Fight1_pressed"]
 [connection signal="pressed" from="Combat/Player_Action_Area/Defend1" to="Combat" method="_on_Defend1_pressed"]
 [connection signal="pressed" from="Combat/Player_Action_Area/Item1" to="Combat" method="_on_Item1_pressed"]
