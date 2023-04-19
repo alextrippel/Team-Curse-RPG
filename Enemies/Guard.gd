@@ -11,12 +11,13 @@ func _ready():
 	direction = Vector2.LEFT
 
 func _physics_process(_delta):
-	if velocity.x > 0 and !$Sprite.flip_h:
-		$Sprite.flip_h = true
-	if velocity.x <= 0 and $Sprite.flip_h :
-		$Sprite.flip_h = false
-	velocity = speed * direction
-	velocity = move_and_slide(velocity, Vector2.UP)
+	if Combat.visible == false:
+		if velocity.x > 0 and !$Sprite.flip_h:
+			$Sprite.flip_h = true
+		if velocity.x <= 0 and $Sprite.flip_h :
+			$Sprite.flip_h = false
+		velocity = speed * direction
+		velocity = move_and_slide(velocity, Vector2.UP)
 
 func change_direction() :
 	direction *= -1
@@ -30,7 +31,6 @@ func die():
 
 
 func _on_Combat_Start_body_entered(body):
-	if body.name == 'Player':
+	if body.name == 'Player' and Combat.visible == false:
 		#Global.combats_completed[Global.room]=true
-		#queue_free()
 		Combat.show()

@@ -11,7 +11,12 @@ func _physics_process(_delta):
 		var enemy_pos = Global.room_enemy_pos[Global.room]
 		if enemy_name != '' and enemy_pos != Vector2.UP :
 			spawn(enemy_name,enemy_pos)
-
+			spawned = true
+	if Global.combats_completed[Global.room]:
+		var e = get_children()
+		for child in e:
+			child.queue_free()
+			
 func spawn(e_type, p):
 	var enemy = null
 	if e_type == "Guard":
