@@ -27,7 +27,12 @@ func _physics_process(_delta):
 			var enemies = C_Enemy_Container.get_children()
 			for child in enemies :
 				child.take_action()
-				player_turn = true
+				if child.skip == true:
+					player_turn = false
+					print('you were restrained and your enemy moves again!')
+				else :
+					player_turn = true
+					child.skip = false
 			#enemy turn events
 		#ending the combat when either side dies
 		if win == true :
@@ -40,6 +45,7 @@ func end_combat():
 	Global.stats['defense'] = Global.stats['base_defense']
 	Global.stats['attack'] = Global.stats['base_attack']
 	if win == true :
+		Global.stats['health'] = Global.stats['max_health']
 		Global.combats_completed[Global.room]=true
 		Global.decrease_level()
 		hide()

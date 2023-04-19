@@ -17,19 +17,19 @@ var combats_completed = {0:false,1:false,2:false,3:false}
 var room_enemy_type = {0:'',
 	1:'',
 	2:'Guard',
-	3:''
+	3:'Spider'
 }
 var room_enemy_pos = {0:Vector2.ZERO,
 	1:Vector2.ZERO,
 	2:Vector2(550,450),
-	3:Vector2.ZERO
+	3:Vector2(600, 300)
 }
 var spawned = false
-var enemy_combat_pos = [Vector2(600,150),Vector2(800,150)]
+var enemy_combat_pos = [Vector2(600,150)]
 
-var stats = {"max_health":10, 'health':10,
-	"base_defense":5,'defense':5,
-	'base_attack':10, 'attack':10,
+var stats = {"max_health":20, 'health':20,
+	"base_defense":12,'defense':12,
+	'base_attack':20, 'attack':20,
 }
 
 func stat_raise(target, stat, amount):

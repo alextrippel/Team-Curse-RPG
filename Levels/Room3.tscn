@@ -8,8 +8,8 @@
 [ext_resource path="res://UI/Camera.gd" type="Script" id=6]
 [ext_resource path="res://Combat/Combat.gd" type="Script" id=7]
 [ext_resource path="res://Player/C_Player.gd" type="Script" id=8]
-[ext_resource path="res://Enemies/C_Guard.gd" type="Script" id=9]
-[ext_resource path="res://Assets/Guard.jpg" type="Texture" id=10]
+[ext_resource path="res://Enemies/C_Spider.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/spider.png" type="Texture" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -92,7 +92,7 @@ script = ExtResource( 7 )
 [node name="Background" type="ColorRect" parent="Combat"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.901961 )
+color = Color( 0.0705882, 0.0196078, 0.290196, 0.901961 )
 
 [node name="Player_Action_Area" type="ColorRect" parent="Combat"]
 anchor_right = 1.0
@@ -219,10 +219,9 @@ script = ExtResource( 8 )
 
 [node name="C_Enemy_Container" type="Node2D" parent="Combat"]
 
-[node name="C_Guard" type="Sprite" parent="Combat/C_Enemy_Container"]
-scale = Vector2( 0.1, 0.1 )
+[node name="C_Spider" parent="Combat/C_Enemy_Container" instance=ExtResource( 9 )]
+scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 10 )
-script = ExtResource( 9 )
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
