@@ -145,7 +145,6 @@ func _on_Attack_C_pressed():
 			
 	$Player_Action_Area.hide()
 	$Player_Fight_Area.hide()
-	var randstun = randf()
 	if stunodds < randf():
 		player_turn = false
 
