@@ -35,6 +35,10 @@ var npc_stats = {"max_health":10, 'health':10,
 	'max_mana':10, 'mana':10
 }
 
+func _unhandled_input(event):
+	if event.is_action_pressed("menu"):
+		var Pause_Menu = get_tree().change_scene("res://UI/Pause_Menu.tscn")
+
 func stat_raise(target, stat, amount):
 	if target == 'player':
 		player_stats[stat] += amount
