@@ -3,6 +3,7 @@ extends Node2D
 onready var Guard = load('res://Enemies/Guard.tscn')
 onready var Spider = load('res://Enemies/Spider.tscn')
 onready var DM = load('res://Enemies/DM.tscn')
+onready var Vamp = load('res://Enemies/Vamp.tscn')
 
 var spawned = false
 func _physics_process(_delta):
@@ -25,5 +26,7 @@ func spawn(e_type, p):
 		enemy = Spider.instance()
 	if e_type == "DM":
 		enemy = DM.instance()
+	if e_type == "Vamp":
+		enemy = Vamp.instance()
 	enemy.position = p
 	add_child(enemy)

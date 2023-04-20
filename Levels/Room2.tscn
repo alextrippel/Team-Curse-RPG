@@ -193,7 +193,7 @@ margin_left = -80.0
 margin_top = -200.0
 margin_right = 80.0
 margin_bottom = -160.0
-text = "A"
+text = "Critical Strike"
 
 [node name="Attack_B" type="Button" parent="Combat/Player_Fight_Area"]
 anchor_left = 0.5
@@ -204,7 +204,7 @@ margin_left = -80.0
 margin_top = -130.0
 margin_right = 80.0
 margin_bottom = -90.0
-text = "B"
+text = "Reckless Strike"
 
 [node name="Attack_C" type="Button" parent="Combat/Player_Fight_Area"]
 anchor_left = 0.5
@@ -215,7 +215,7 @@ margin_left = -80.0
 margin_top = -60.0
 margin_right = 80.0
 margin_bottom = -20.0
-text = "C"
+text = "Stunning Strike"
 
 [node name="Back" type="Button" parent="Combat/Player_Fight_Area"]
 anchor_left = 0.5
