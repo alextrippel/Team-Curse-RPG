@@ -34,6 +34,8 @@ func take_action():
 		print('enemy chose to ' + action)
 
 func damage(d):
-	health -= d
+	if int(d) == 0:
+		d = 1
+	health -= int(d)
 	if health <= 0:
 		Combat.win = true

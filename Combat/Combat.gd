@@ -8,8 +8,10 @@ onready var O_Enemies = get_node('/root/Game/Enemies')
 var player_old_pos = Vector2.ZERO
 var win = false
 var player_turn = true
+var defensebuff = 4 #how much player defense raises by per use of defend
 
 func _ready():
+	randomize()
 	win = false
 	$Player_Action_Area/Info_Wall.visible = false
 
@@ -61,7 +63,8 @@ func _on_Fight1_pressed():
 	$Player_Fight_Area.show()
 
 func _on_Defend1_pressed():
-	Global.stats['defense'] *= 1.25
+	Global.stats['defense'] += defensebuff
+	Global.stats['defense'] = int(Global.stats['defense'])
 	print('defend')
 	$Player_Action_Area.hide()
 	player_turn = false
@@ -89,10 +92,15 @@ func _on_Info1_pressed():
 			$Player_Action_Area/Info_Wall.hide()
 		
 func _on_Attack_A_pressed():
+	#critical strike
 	var enemies = C_Enemy_Container.get_children()
 	var overworld_enemies = O_Enemies.get_children()
 	for child in enemies :
 		var dam = Global.stats['attack'] / child.defense
+		var crit = randf()
+		if crit <= .125 :
+			print('critical hit')
+			dam *= 2
 		child.damage(dam)
 		if child.health <= 0:
 			win = true
@@ -104,10 +112,42 @@ func _on_Attack_A_pressed():
 	player_turn = false
 
 func _on_Attack_B_pressed():
-	print('attack_b')
-
+	#reckless strike
+	var enemies = C_Enemy_Container.get_children()
+	var overworld_enemies = O_Enemies.get_children()
+	for child in enemies :
+		Global.stats['defense'] -= 2
+		Global.stats['attack'] += 4
+		var dam = Global.stats['attack'] / child.defense
+		child.damage(dam)
+		if child.health <= 0:
+			win = true
+			for c in overworld_enemies :
+				c.queue_free()
+			
+	$Player_Action_Area.hide()
+	$Player_Fight_Area.hide()
+	player_turn = false
+	
 func _on_Attack_C_pressed():
-	print('attack_c')
+	#Stunnning Strike
+	var enemies = C_Enemy_Container.get_children()
+	var overworld_enemies = O_Enemies.get_children()
+	var stunodds = .6/(22-Global.level)
+	print(stunodds)
+	for child in enemies :
+		var dam = Global.stats['attack'] / child.defense
+		child.damage(dam)
+		if child.health <= 0:
+			win = true
+			for c in overworld_enemies :
+				c.queue_free()
+			
+	$Player_Action_Area.hide()
+	$Player_Fight_Area.hide()
+	var randstun = randf()
+	if stunodds < randf():
+		player_turn = false
 
 
 func _on_Back_pressed():
